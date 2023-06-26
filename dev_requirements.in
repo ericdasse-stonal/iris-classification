@@ -1,4 +1,5 @@
 black
+dvc
 flake8
 isort
 pytest

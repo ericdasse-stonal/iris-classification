@@ -12,3 +12,6 @@ This dataset is in a CSV format with the following features from left to right:
 3. Petal length (cm)
 4. Petal width (cm)
 5. Target
+
+## Data versioning with DVC
+In this project, the raw and prepared data are versioned using [DVC](https://dvc.org/)
