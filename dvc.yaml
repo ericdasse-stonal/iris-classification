@@ -1,0 +1,16 @@
+stages:
+  prepare:
+    cmd: python iris_classification/prepare.py
+    deps:
+    - data/raw/
+    - iris_classification/prepare.py
+    outs:
+    - data/prepared/test.csv
+    - data/prepared/train.csv
+  train:
+    cmd: python iris_classification/train.py
+    deps:
+    - data/prepared/train.csv
+    - iris_classification/train.py
+    outs:
+    - model/iris_model.joblib
