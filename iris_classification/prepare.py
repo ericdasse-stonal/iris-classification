@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from iris_classification.settings import PREPARED_DATA_PATH, RAW_DATA_PATH
+from iris_classification.settings import IRIS_COLUMNS, PREPARED_DATA_DIR, RAW_DATA_DIR
 
 
 def save_as_csv(X, y, destination):
@@ -10,7 +10,7 @@ def save_as_csv(X, y, destination):
     labels = pd.Series(y)
 
     iris_data = pd.concat([iris_features, labels])
-    iris_data.to_csv(destination)
+    iris_data.to_csv(destination, columns=IRIS_COLUMNS)
 
 
 def prepare(raw_data_path: Path, prepared_data_dir: Path):
@@ -18,7 +18,7 @@ def prepare(raw_data_path: Path, prepared_data_dir: Path):
     iris = pd.read_csv(
         raw_data_path,
         header=None,
-        names=["sepal_length", "sepal_width", "petal_length", "petal_width", "species"],
+        names=IRIS_COLUMNS,
     )
 
     # Simplify species names by removing the prefix "Iris-"
@@ -39,4 +39,4 @@ def prepare(raw_data_path: Path, prepared_data_dir: Path):
 
 
 if __name__ == "__main__":
-    prepare(raw_data_path=RAW_DATA_PATH, prepared_data_dir=PREPARED_DATA_PATH)
+    prepare(raw_data_path=RAW_DATA_DIR, prepared_data_dir=PREPARED_DATA_DIR)
