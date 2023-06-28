@@ -1,6 +1,6 @@
 stages:
   prepare:
-    cmd: python iris_classification/prepare.py
+    cmd: python -m iris_classification.prepare
     deps:
     - data/raw/
     - iris_classification/prepare.py
@@ -8,7 +8,7 @@ stages:
     - data/prepared/test.csv
     - data/prepared/train.csv
   train:
-    cmd: python iris_classification/train.py
+    cmd: python -m iris_classification.train
     deps:
     - data/prepared/train.csv
     - iris_classification/train.py

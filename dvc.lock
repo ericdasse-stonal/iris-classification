@@ -1,0 +1,39 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m iris_classification.prepare
+    deps:
+    - path: data/raw/
+      hash: md5
+      md5: 0a433c550f7fc2043b636c4bfa304abe.dir
+      size: 4666
+      nfiles: 3
+    - path: iris_classification/prepare.py
+      hash: md5
+      md5: 8ca4f949742921c0d178c85bdc2435dd
+      size: 1713
+    outs:
+    - path: data/prepared/test.csv
+      hash: md5
+      md5: 2c5b9789dbf73147fbe89cf98bb4719d
+      size: 1319
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 093ecce9f2ff3d255c13ec79148e05f7
+      size: 1347
+  train:
+    cmd: python -m iris_classification.train
+    deps:
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 093ecce9f2ff3d255c13ec79148e05f7
+      size: 1347
+    - path: iris_classification/train.py
+      hash: md5
+      md5: 5ae88d18f8298efa9fe51ae9d9ea5b0d
+      size: 708
+    outs:
+    - path: model/iris_model.joblib
+      hash: md5
+      md5: a424eb162cdac2307d7dd223729473a6
+      size: 1439

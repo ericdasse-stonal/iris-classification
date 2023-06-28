@@ -15,6 +15,7 @@ def save_as_csv(X, y, destination):
     iris_data.to_csv(destination, index=False)
 
 
+@logger.catch(reraise=True)
 def prepare(raw_data_path: Path, prepared_data_dir: Path):
     logger.info("Data preparation process...")
 
