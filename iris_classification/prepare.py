@@ -6,11 +6,12 @@ from iris_classification.settings import IRIS_COLUMNS, PREPARED_DATA_DIR, RAW_DA
 
 
 def save_as_csv(X, y, destination):
-    iris_features = pd.Series(X)
+    iris_features = pd.DataFrame(X)
     labels = pd.Series(y)
 
-    iris_data = pd.concat([iris_features, labels])
-    iris_data.to_csv(destination, columns=IRIS_COLUMNS)
+    iris_data: pd.DataFrame = pd.concat([iris_features, labels], axis=1)
+    iris_data.columns = IRIS_COLUMNS[2:]
+    iris_data.to_csv(destination, index=False)
 
 
 def prepare(raw_data_path: Path, prepared_data_dir: Path):
@@ -27,7 +28,7 @@ def prepare(raw_data_path: Path, prepared_data_dir: Path):
     # Split the data into training and test
     X = iris.drop("species", axis=1)
     X = X.to_numpy()[:, (2, 3)]
-    y = iris["species"]
+    y = iris["species"].to_numpy()
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.5, random_state=42
