@@ -14,4 +14,11 @@ This dataset is in a CSV format with the following features from left to right:
 5. Target
 
 ## Data versioning with DVC
-In this project, the raw and prepared data are versioned using [DVC](https://dvc.org/)
+In this project, the raw and prepared data are versioned using [DVC](https://dvc.org/).
+Since it's made in Python, it was added to [dev_requirements.in](/dev_requirements.in).
+
+To import all the data necessary for this project via DVC, you can perform
+
+```bash
+$ dvc pull
+```
