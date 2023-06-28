@@ -21,5 +21,5 @@ def train(prepared_data_path, model_dir, serialize=True):
 if __name__ == "__main__":
     train(
         prepared_data_path=PREPARED_DATA_DIR / "train.csv",
-        model_dir=MODEL_DIR,
+        model_dir=MODEL_DIR / "model.joblib",
     )
